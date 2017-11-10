@@ -1531,7 +1531,7 @@ __STATIC_INLINE void GIC_Enable(void)
 #if (__TIM_PRESENT == 1U) || defined(DOXYGEN)
   
 /* PL1 Physical Timer */
-#if (__CORTEX_A == 7U) || defined(DOXYGEN)
+#if (__CORTEX_A == 7U) || (__CORTEX_A == 32U) || defined(DOXYGEN)
   
 /** \brief Physical Timer Control register */
 typedef union

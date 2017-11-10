@@ -119,7 +119,11 @@ __STATIC_FORCEINLINE uint32_t __get_ISR(void)
 __STATIC_FORCEINLINE uint32_t __get_CBAR(void)
 {
   uint32_t result;
+#if __CORTEX_A == 32
+  __get_CP(15, 1, result, 15, 3, 0);
+#else
   __get_CP(15, 4, result, 15, 0, 0);
+#endif
   return result;
 }
 
@@ -145,6 +149,26 @@ __STATIC_FORCEINLINE uint32_t __get_TTBR0(void)
 __STATIC_FORCEINLINE void __set_TTBR0(uint32_t ttbr0)
 {
   __set_CP(15, 0, ttbr0, 2, 0, 0);
+}
+
+/** \brief  Set TTBCR
+
+    This function assigns the given value to the Translation Table Base Control Register.
+
+    \param [in]    ttbcr  Translation Table Base Control Register value to set
+ */
+__STATIC_INLINE void __set_TTBCR(uint32_t ttbcr) {
+  __set_CP(15, 0, ttbcr, 2, 0, 2);
+}
+
+/** \brief  Set MAIR0
+
+    This function assigns the given value to the Memory Attribute Indirection Register 0.
+
+    \param [in]    mair0  Memory Attribute Indirection Register 0 value to set
+ */
+__STATIC_INLINE void __set_MAIR0(uint32_t mair0) {
+  __set_CP(15, 0, mair0, 10, 2, 0);
 }
 
 /** \brief  Get DACR
@@ -271,7 +295,7 @@ __STATIC_FORCEINLINE void __set_MVBAR(uint32_t mvbar)
   __set_CP(15, 0, mvbar, 12, 0, 1);
 }
 
-#if (defined(__CORTEX_A) && (__CORTEX_A == 7U) && \
+#if (defined(__CORTEX_A) && ((__CORTEX_A == 7U) || (__CORTEX_A == 32U)) && \
     defined(__TIM_PRESENT) && (__TIM_PRESENT == 1U)) || \
     defined(DOXYGEN)
 
