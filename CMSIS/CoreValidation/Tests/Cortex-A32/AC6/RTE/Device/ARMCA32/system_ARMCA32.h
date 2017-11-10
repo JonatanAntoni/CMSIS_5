@@ -1,5 +1,5 @@
 /******************************************************************************
- * @file     system_ARMCA7.h
+ * @file     system_ARMCA9.h
  * @brief    CMSIS Device System Header File for ARM Cortex-A Device Series
  * @version  V1.00
  * @date     22 Feb 2017
@@ -25,8 +25,8 @@
  * limitations under the License.
  */
 
-#ifndef __SYSTEM_ARMCA7_H
-#define __SYSTEM_ARMCA7_H
+#ifndef __SYSTEM_ARMCA9_H
+#define __SYSTEM_ARMCA9_H
 
 #ifdef __cplusplus
 extern "C" {
@@ -62,4 +62,4 @@ extern void MMU_CreateTranslationTable(void);
 }
 #endif
 
-#endif /* __SYSTEM_ARMCA7_H */
+#endif /* __SYSTEM_ARMCA9_H */

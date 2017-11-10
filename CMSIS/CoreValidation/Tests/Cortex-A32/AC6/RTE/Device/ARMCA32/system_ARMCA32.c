@@ -1,6 +1,6 @@
 /******************************************************************************
- * @file     system_ARMCA7.c
- * @brief    CMSIS Device System Source File for ARM Cortex-A7 Device Series
+ * @file     system_ARMCA9.c
+ * @brief    CMSIS Device System Source File for ARM Cortex-A9 Device Series
  * @version  V1.00
  * @date     22 Feb 2017
  *
@@ -29,7 +29,7 @@
 #include CMSIS_device_header
 #include "irq_ctrl.h"
 
-#define  SYSTEM_CLOCK  12000000U
+#define  SYSTEM_CLOCK  24000000U
 
 /*----------------------------------------------------------------------------
   System Core Clock Variable
@@ -76,10 +76,9 @@ void SystemInit (void)
 
   // Enable Caches
   L1C_EnableCaches();
-  L1C_EnableBTAC();
 
 #if (__L2C_PRESENT == 1) 
-  // Enable GIC
+  // Enable L2C
   L2C_Enable();
 #endif
 

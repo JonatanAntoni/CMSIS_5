@@ -2,7 +2,7 @@
  * @file     startup_ARMCA32.c
  * @brief    CMSIS Device System Source File for ARM Cortex-A32 Device Series
  * @version  V1.00
- * @date     30 Aug 2017
+ * @date     10 Nov 2017
  *
  * @note
  *
@@ -25,8 +25,7 @@
  * limitations under the License.
  */
 
-#include "RTE_Components.h"
-#include CMSIS_device_header
+#include <ARMCA32.h>
 
 /*----------------------------------------------------------------------------
   Definitions

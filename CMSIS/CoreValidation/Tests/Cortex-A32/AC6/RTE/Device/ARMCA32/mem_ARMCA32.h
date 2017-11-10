@@ -1,8 +1,8 @@
 /**************************************************************************//**
- * @file     mem_ARMCA7.h
+ * @file     mem_ARMCA32.h
  * @brief    Memory base and size definitions (used in scatter file)
  * @version  V1.00
- * @date     22 Feb 2017
+ * @date     30 Aug 2017
  *
  * @note
  *
@@ -25,8 +25,8 @@
  * limitations under the License.
  */
 
-#ifndef __MEM_ARMCA7_H
-#define __MEM_ARMCA7_H
+#ifndef __MEM_ARMCA32_H
+#define __MEM_ARMCA32_H
 
 /*----------------------------------------------------------------------------
   User Stack & Heap size definition
@@ -91,4 +91,4 @@
 #define __TTB_BASE       0x80500000
 #define __TTB_SIZE       0x00004000
 
-#endif /* __MEM_ARMCA7_H */
+#endif /* __MEM_ARMCA32_H */

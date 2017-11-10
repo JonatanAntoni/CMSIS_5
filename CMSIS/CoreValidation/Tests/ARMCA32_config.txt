@@ -1,0 +1,10 @@
+# Parameters:
+# instance.parameter=value                            # (type  , mode     ) default = 'def value'  : description : [min..max]
+#----------------------------------------------------------------------------------------------
+bp.secure_memory=false
+semihosting-enable=1                                  # (bool  , init-time) default = '1'          : Enable semihosting for all cores
+cluster0.cpu0.semihosting-heap_base=0x0               # (int   , init-time) default = '0x0'        :  : [0x0..0xFFFFFFFF]
+cluster0.cpu0.semihosting-heap_limit=0x0              # (int   , init-time) default = '0xFF000000' :  : [0x0..0xFFFFFFFF]
+cluster0.cpu0.semihosting-stack_base=0x0              # (int   , init-time) default = '0xFFFF0000' :  : [0x0..0xFFFFFFFF]
+cluster0.cpu0.semihosting-stack_limit=0x0             # (int   , init-time) default = '0xFF000000' :  : [0x0..0xFFFFFFFF]
+#----------------------------------------------------------------------------------------------

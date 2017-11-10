@@ -1,5 +1,5 @@
 import:
- - ../cortex-a7.rtebuild
+ - ../cortex-a32.rtebuild
 config:
   default: FVP
   FVP:
