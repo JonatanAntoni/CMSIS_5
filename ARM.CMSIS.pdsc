@@ -1223,6 +1223,12 @@ and 8-bit Java bytecodes in Jazelle state.
       <accept Dcore="Cortex-A7"/>
     </condition>
 
+    <condition id="CA7_CA32">
+      <description>Cortex-A7 or Cortex-A32 processor based device</description>
+      <accept Dcore="Cortex-A7"/>
+      <accept Dcore="Cortex-A32"/>
+    </condition>
+
     <!-- ARMCC compiler -->
     <condition id="CA_ARMCC5">
       <description>Cortex-A processor based device for the ARM Compiler 5</description>
@@ -2128,7 +2134,7 @@ and 8-bit Java bytecodes in Jazelle state.
 
     <condition id="OS Tick GTIM">
       <description>Components required for OS Tick Generic Physical Timer</description>
-      <require condition="CA7"/>
+      <require condition="CA7_CA32"/>
       <require Cclass="Device" Cgroup="IRQ Controller"/>
     </condition>
 

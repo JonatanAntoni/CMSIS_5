@@ -783,6 +783,39 @@ typedef struct
 
 #define GICDistributor      ((GICDistributor_Type      *)     GIC_DISTRIBUTOR_BASE ) /*!< \brief GIC Distributor register set access pointer */
 
+/** \brief  Structure type to access the Generic Interrupt Controller Redistributor (GICR)
+*/
+typedef struct
+{
+  __IOM uint32_t GICR_CTLR;                         /*!< \brief  Offset: 0x0000 - (R/W) Redistributor Control Register                        */
+  __IOM uint32_t GICR_IIDR;                         /*!< \brief  Offset: 0x0004 - (R/ ) Implementer Identification Register                   */
+  __IOM uint32_t GICR_TYPER[2];                     /*!< \brief  Offset: 0x0008 - (R/ ) Redistributor Type Register                           */
+  __IOM uint32_t GICR_STATUSR;                      /*!< \brief  Offset: 0x0010 - (R/W) Error Reporting Status Register, optional             */
+  __IOM uint32_t GICR_WAKER;                        /*!< \brief  Offset: 0x0014 - (R/W) Redistributor Wake Register                           */
+                 RESERVED(0[2], uint32_t)
+  __IOM uint32_t IMPDEF1   ;                        /*!< \brief  Offset: 0x0020 - (?/?) IMPLEMENTATION DEFINED                                */
+                 RESERVED(1[7], uint32_t)
+  __IOM uint64_t GICR_SETLPIR;                      /*!< \brief  Offset: 0x0040 - ( /W) Set LPI Pending Register                              */
+  __IOM uint64_t GICR_CLRLPIR;                      /*!< \brief  Offset: 0x0048 - ( /W) Clear LPI Pending Register                            */
+                 RESERVED(2[8], uint32_t)
+  __IOM uint64_t GICR_PROPBASER;                    /*!< \brief  Offset: 0x0070 - (R/W) Redistributor Properties Base Address Register        */
+  __IOM uint64_t GICR_PENDBASER;                    /*!< \brief  Offset: 0x0078 - (R/W) Redistributor LPI Pending Table Base Address Register */
+                 RESERVED(3[8], uint32_t)
+  __IOM uint64_t GICR_INVLPIR;                      /*!< \brief  Offset: 0x00A0 - ( /W) Redistributor Invalidate LPI Register                 */
+                 RESERVED(4[2], uint32_t)
+  __IOM uint64_t GICR_INVALLR;                      /*!< \brief  Offset: 0x00B0 - ( /W) Redistributor Invalidate All Register                 */
+                 RESERVED(5[2], uint32_t)
+  __IOM uint64_t GICR_SYNCR;                        /*!< \brief  Offset: 0x00C0 - (R/ ) Redistributor Synchronize Register                    */
+                 RESERVED(6[12], uint32_t)
+                 RESERVED(7[2], uint32_t)
+  __IOM uint64_t IMPDEF2;                           /*!< \brief  Offset: 0x0100 - ( /W) IMPLEMENTATION DEFINED                                */
+                 RESERVED(8[2], uint32_t)
+  __IOM uint64_t IMPDEF3;                           /*!< \brief  Offset: 0x0110 - ( /W) IMPLEMENTATION DEFINED                                */
+                 RESERVED(9[2], uint32_t)
+} GICRedistributor_Type;
+
+#define GICRedistributor      ((GICRedistributor_Type      *)     GIC_REDISTRIBUTOR_BASE ) /*!< \brief GIC Redistributor register set access pointer */
+
 /** \brief  Structure type to access the Generic Interrupt Controller Interface (GICC)
 */
 typedef struct
@@ -1522,6 +1555,15 @@ __STATIC_INLINE void GIC_CPUInterfaceInit(void)
 */
 __STATIC_INLINE void GIC_Enable(void)
 {
+
+  // GICv3 or higher
+  if ((GICInterface->IIDR & 0x000F0000) >= (3U << 16U)) {
+    // Ensure GICR_WAKER.ProcessorSleep is off
+    GICRedistributor->GICR_WAKER &= ~0x02;
+    // Wait for children asleep to be cleared
+    while ((GICRedistributor->GICR_WAKER & 0x04) != 0) {}
+  }
+
   GIC_DistInit();
   GIC_CPUInterfaceInit(); //per CPU
 }

@@ -161,16 +161,16 @@ void osRtxThreadListPut (os_object_t *object, os_thread_t *thread) {
 
 /// Get a Thread with Highest Priority from specified Object list and remove it.
 /// \param[in]  object          generic object.
-/// \return thread object.
+/// \return thread object. 
 os_thread_t *osRtxThreadListGet (os_object_t *object) {
   os_thread_t *thread;
 
   thread = object->thread_list;
-  object->thread_list = thread->thread_next;
-  if (thread->thread_next != NULL) {
+    object->thread_list = thread->thread_next;
+    if (thread->thread_next != NULL) {
     thread->thread_next->thread_prev = osRtxThreadObject(object);
-  }
-  thread->thread_prev = NULL;
+    }
+    thread->thread_prev = NULL;
 
   return thread;
 }
@@ -198,12 +198,12 @@ void osRtxThreadListSort (os_thread_t *thread) {
   thread0 = thread;
   while ((thread0 != NULL) && (thread0->id == osRtxIdThread)) {
     thread0 = thread0->thread_prev;
-  }
+    }
   object = osRtxObject(thread0);
 
   if (object != NULL) {
-    osRtxThreadListRemove(thread);
-    osRtxThreadListPut(object, thread);
+  osRtxThreadListRemove(thread);
+  osRtxThreadListPut(object, thread);
   }
 }
 
@@ -487,13 +487,13 @@ bool_t osRtxThreadWaitEnter (uint8_t state, uint32_t timeout) {
   // Check if Kernel is running
   if (osRtxKernelGetState() != osRtxKernelRunning) {
     //lint -e{904} "Return statement before end of function" [MISRA Note 1]
-    return FALSE;
+    return false;
   }
 
   // Check if any thread is ready
   if (osRtxInfo.thread.ready.thread_list == NULL) {
     //lint -e{904} "Return statement before end of function" [MISRA Note 1]
-    return FALSE;
+    return false;
   }
 
   // Get running thread
@@ -506,7 +506,7 @@ bool_t osRtxThreadWaitEnter (uint8_t state, uint32_t timeout) {
   thread = osRtxThreadListGet(&osRtxInfo.thread.ready);
   osRtxThreadSwitch(thread);
 
-  return TRUE;
+  return true;
 }
 
 /// Check current running Thread Stack.
@@ -523,7 +523,7 @@ __WEAK void osRtxThreadStackCheck (void) {
         (*((uint32_t *)thread->stack_mem) != osRtxStackMagicWord)) {
       (void)osRtxErrorNotify(osRtxErrorStackUnderflow, thread);
     }
-  }
+    }
 }
 
 #ifdef RTX_TF_M_EXTENSION
@@ -556,7 +556,7 @@ static void osRtxThreadPostProcess (os_thread_t *thread) {
   if (thread->state == osRtxThreadWaitingThreadFlags) {
     thread_flags = ThreadFlagsCheck(thread, thread->wait_flags, thread->flags_options);
     if (thread_flags != 0U) {
-      osRtxThreadWaitExit(thread, thread_flags, FALSE);
+      osRtxThreadWaitExit(thread, thread_flags, false);
       EvrRtxThreadFlagsWaitCompleted(thread->wait_flags, thread->flags_options, thread_flags, thread);
     }
   }
@@ -648,10 +648,10 @@ static osThreadId_t svcRtxThreadNew (osThreadFunc_t func, void *argument, const 
   // Check stack size
   if (stack_size != 0U) {
     if (((stack_size & 7U) != 0U) || (stack_size < (64U + 8U)) || (stack_size > 0x7FFFFFFFU)) {
-      EvrRtxThreadError(NULL, osRtxErrorInvalidThreadStack);
+    EvrRtxThreadError(NULL, osRtxErrorInvalidThreadStack);
       //lint -e{904} "Return statement before end of function" [MISRA Note 1]
-      return NULL;
-    }
+    return NULL;
+  }
   }
 
   // Allocate object memory if not provided
@@ -743,71 +743,71 @@ static osThreadId_t svcRtxThreadNew (osThreadFunc_t func, void *argument, const 
 #endif
 
   if (thread != NULL) {
-    // Initialize control block
+  // Initialize control block
     //lint --e{923}  --e{9078} "cast between pointers and unsigned int"
     //lint --e{9079} --e{9087} "cast between pointers to different object types"
     //lint --e{9074} "conversion between a pointer to function and another type"
-    thread->id            = osRtxIdThread;
-    thread->state         = osRtxThreadReady;
-    thread->flags         = flags;
-    thread->attr          = (uint8_t)attr_bits;
-    thread->name          = name;
-    thread->thread_next   = NULL;
-    thread->thread_prev   = NULL;
-    thread->delay_next    = NULL;
-    thread->delay_prev    = NULL;
-    thread->thread_join   = NULL;
-    thread->delay         = 0U;
-    thread->priority      = (int8_t)priority;
-    thread->priority_base = (int8_t)priority;
+  thread->id            = osRtxIdThread;
+  thread->state         = osRtxThreadReady;
+  thread->flags         = flags;
+  thread->attr          = (uint8_t)attr_bits;
+  thread->name          = name;
+  thread->thread_next   = NULL;
+  thread->thread_prev   = NULL;
+  thread->delay_next    = NULL;
+  thread->delay_prev    = NULL;
+  thread->thread_join   = NULL;
+  thread->delay         = 0U;
+  thread->priority      = (int8_t)priority;
+  thread->priority_base = (int8_t)priority;
     thread->stack_frame   = STACK_FRAME_INIT_VAL;
-    thread->flags_options = 0U;
-    thread->wait_flags    = 0U;
-    thread->thread_flags  = 0U;
-    thread->mutex_list    = NULL;
-    thread->stack_mem     = stack_mem;
-    thread->stack_size    = stack_size;
-    thread->sp            = (uint32_t)stack_mem + stack_size - 64U;
-    thread->thread_addr   = (uint32_t)func;
+  thread->flags_options = 0U;
+  thread->wait_flags    = 0U;
+  thread->thread_flags  = 0U;
+  thread->mutex_list    = NULL;
+  thread->stack_mem     = stack_mem;
+  thread->stack_size    = stack_size;
+  thread->sp            = (uint32_t)stack_mem + stack_size - 64U;
+  thread->thread_addr   = (uint32_t)func;
   #if (DOMAIN_NS == 1)
-    thread->tz_memory     = tz_memory;
+  thread->tz_memory     = tz_memory;
   #ifdef RTX_TF_M_EXTENSION
     thread->tz_module     = tz_module;
   #endif
   #endif
 
-    // Initialize stack
+  // Initialize stack
     //lint --e{613} false detection: "Possible use of null pointer"
-    ptr = (uint32_t *)stack_mem;
+   ptr   = (uint32_t *)stack_mem;
     ptr[0] = osRtxStackMagicWord;
     if ((osRtxConfig.flags & osRtxConfigStackWatermark) != 0U) {
       for (n = (stack_size/4U) - (16U + 1U); n != 0U; n--) {
          ptr++;
         *ptr = osRtxStackFillPattern;
-      }
     }
+  }
     ptr = (uint32_t *)thread->sp;
     for (n = 0U; n != 13U; n++) {
       ptr[n] = 0U;                      // R4..R11, R0..R3, R12
-    }
+  }
     ptr[13] = (uint32_t)osThreadExit;   // LR
     ptr[14] = (uint32_t)func;           // PC
     ptr[15] = xPSR_InitVal(
                 (bool_t)((osRtxConfig.flags & osRtxConfigPrivilegedMode) != 0U),
                 (bool_t)(((uint32_t)func & 1U) != 0U)
-              );                        // xPSR
+             );                         // xPSR
     ptr[8]  = (uint32_t)argument;       // R0
 
-    // Register post ISR processing function
-    osRtxInfo.post_process.thread = osRtxThreadPostProcess;
+  // Register post ISR processing function
+  osRtxInfo.post_process.thread = osRtxThreadPostProcess;
 
     EvrRtxThreadCreated(thread, thread->thread_addr, thread->name);
   } else {
     EvrRtxThreadError(NULL, (int32_t)osErrorNoMemory);
   }
-  
+
   if (thread != NULL) {
-    osRtxThreadDispatch(thread);
+  osRtxThreadDispatch(thread);
   }
 
   return thread;
@@ -882,7 +882,7 @@ static uint32_t svcRtxThreadGetStackSize (osThreadId_t thread_id) {
 static uint32_t svcRtxThreadGetStackSpace (osThreadId_t thread_id) {
   os_thread_t    *thread = osRtxThreadId(thread_id);
   const uint32_t *stack;
-        uint32_t  space;
+  uint32_t     space;
 
   // Check parameters
   if ((thread == NULL) || (thread->id != osRtxIdThread)) {
@@ -901,11 +901,11 @@ static uint32_t svcRtxThreadGetStackSpace (osThreadId_t thread_id) {
   //lint -e{9079} "conversion from pointer to void to pointer to other type"
   stack = thread->stack_mem;
   if (*stack++ == osRtxStackMagicWord) {
-    for (space = 4U; space < thread->stack_size; space += 4U) {
-      if (*stack++ != osRtxStackFillPattern) {
-        break;
-      }
+  for (space = 4U; space < thread->stack_size; space += 4U) {
+    if (*stack++ != osRtxStackFillPattern) {
+      break;
     }
+  }
   } else {
     space = 0U;
   }
@@ -980,15 +980,15 @@ static osStatus_t svcRtxThreadYield (void) {
   os_thread_t *thread_ready;
 
   if (osRtxKernelGetState() == osRtxKernelRunning) {
-    thread_running = osRtxThreadGetRunning();
-    thread_ready   = osRtxInfo.thread.ready.thread_list;
+  thread_running = osRtxThreadGetRunning();
+  thread_ready   = osRtxInfo.thread.ready.thread_list;
     if ((thread_ready != NULL) &&
-        (thread_ready->priority == thread_running->priority)) {
-      osRtxThreadListRemove(thread_ready);
-      osRtxThreadReadyPut(thread_running);
-      EvrRtxThreadPreempted(thread_running);
-      osRtxThreadSwitch(thread_ready);
-    }
+      (thread_ready->priority == thread_running->priority)) {
+    osRtxThreadListRemove(thread_ready);
+    osRtxThreadReadyPut(thread_running);
+    EvrRtxThreadPreempted(thread_running);
+    osRtxThreadSwitch(thread_ready);
+  }
   }
 
   return osOK;
@@ -1036,17 +1036,17 @@ static osStatus_t svcRtxThreadSuspend (osThreadId_t thread_id) {
   }
 
   if (status == osOK) {
-    EvrRtxThreadSuspended(thread);
+  EvrRtxThreadSuspended(thread);
 
-    if (thread->state == osRtxThreadRunning) {
-      osRtxThreadSwitch(osRtxThreadListGet(&osRtxInfo.thread.ready));
-    }
+  if (thread->state == osRtxThreadRunning) {
+    osRtxThreadSwitch(osRtxThreadListGet(&osRtxInfo.thread.ready));
+  }
 
-    // Update Thread State and put it into Delay list
-    thread->state = osRtxThreadBlocked;
-    thread->thread_prev = NULL;
-    thread->thread_next = NULL;
-    osRtxThreadDelayInsert(thread, osWaitForever);
+  // Update Thread State and put it into Delay list
+  thread->state = osRtxThreadBlocked;
+  thread->thread_prev = NULL;
+  thread->thread_next = NULL;
+  osRtxThreadDelayInsert(thread, osWaitForever);
   }
 
   return status;
@@ -1216,7 +1216,7 @@ static void svcRtxThreadExit (void) {
 
   // Wakeup Thread waiting to Join
   if (thread->thread_join != NULL) {
-    osRtxThreadWaitExit(thread->thread_join, (uint32_t)osOK, FALSE);
+    osRtxThreadWaitExit(thread->thread_join, (uint32_t)osOK, false);
     EvrRtxThreadJoined(thread->thread_join);
   }
 
@@ -1283,38 +1283,38 @@ static osStatus_t svcRtxThreadTerminate (osThreadId_t thread_id) {
   }
 
   if (status == osOK) {
-    // Release owned Mutexes
-    osRtxMutexOwnerRelease(thread->mutex_list);
+  // Release owned Mutexes
+  osRtxMutexOwnerRelease(thread->mutex_list);
 
-    // Wakeup Thread waiting to Join
-    if (thread->thread_join != NULL) {
-      osRtxThreadWaitExit(thread->thread_join, (uint32_t)osOK, FALSE);
-      EvrRtxThreadJoined(thread->thread_join);
-    }
+  // Wakeup Thread waiting to Join
+  if (thread->thread_join != NULL) {
+    osRtxThreadWaitExit(thread->thread_join, (uint32_t)osOK, false);
+    EvrRtxThreadJoined(thread->thread_join);
+  }
 
-    // Switch to next Ready Thread when terminating running Thread
-    if (thread->state == osRtxThreadRunning) {
-      thread->sp = __get_PSP();
-      osRtxThreadSwitch(osRtxThreadListGet(&osRtxInfo.thread.ready));
-      osRtxThreadSetRunning(NULL);
-    } else {
-      osRtxThreadDispatch(NULL);
-    }
+  // Switch to next Ready Thread when terminating running Thread
+  if (thread->state == osRtxThreadRunning) {
+    thread->sp = __get_PSP();
+    osRtxThreadSwitch(osRtxThreadListGet(&osRtxInfo.thread.ready));
+    osRtxThreadSetRunning(NULL);
+  } else {
+    osRtxThreadDispatch(NULL);
+  }
 
     if ((thread->attr & osThreadJoinable) == 0U) {
-      osRtxThreadFree(thread);
-    } else {
-      // Update Thread State and put it into Terminate Thread list
-      thread->state = osRtxThreadTerminated;
-      thread->thread_prev = NULL;
-      thread->thread_next = osRtxInfo.thread.terminate_list;
-      if (osRtxInfo.thread.terminate_list != NULL) {
-        osRtxInfo.thread.terminate_list->thread_prev = thread;
-      }
-      osRtxInfo.thread.terminate_list = thread;
+    osRtxThreadFree(thread);
+  } else {
+    // Update Thread State and put it into Terminate Thread list
+    thread->state = osRtxThreadTerminated;
+    thread->thread_prev = NULL;
+    thread->thread_next = osRtxInfo.thread.terminate_list;
+    if (osRtxInfo.thread.terminate_list != NULL) {
+      osRtxInfo.thread.terminate_list->thread_prev = thread;
     }
+    osRtxInfo.thread.terminate_list = thread;
+  }
 
-    EvrRtxThreadDestroyed(thread);
+  EvrRtxThreadDestroyed(thread);
   }
 
   return status;
@@ -1324,7 +1324,7 @@ static osStatus_t svcRtxThreadTerminate (osThreadId_t thread_id) {
 /// \note API identical to osThreadGetCount
 static uint32_t svcRtxThreadGetCount (void) {
   const os_thread_t *thread;
-        uint32_t     count;
+  uint32_t     count;
 
   // Running Thread
   count = 1U;
@@ -1368,7 +1368,7 @@ static uint32_t svcRtxThreadEnumerate (osThreadId_t *thread_array, uint32_t arra
   // Running Thread
   *thread_array = osRtxThreadGetRunning();
    thread_array++;
-   count = 1U;
+  count = 1U;
 
   // Ready List
   for (thread = osRtxInfo.thread.ready.thread_list;
@@ -1433,7 +1433,7 @@ static uint32_t svcRtxThreadFlagsSet (osThreadId_t thread_id, uint32_t flags) {
       } else {
         thread_flags = thread_flags0;
       }
-      osRtxThreadWaitExit(thread, thread_flags0, TRUE);
+      osRtxThreadWaitExit(thread, thread_flags0, true);
       EvrRtxThreadFlagsWaitCompleted(thread->wait_flags, thread->flags_options, thread_flags0, thread);
     }
   }
@@ -1516,19 +1516,19 @@ static uint32_t svcRtxThreadFlagsWait (uint32_t flags, uint32_t options, uint32_
   if (thread_flags != 0U) {
     EvrRtxThreadFlagsWaitCompleted(flags, options, thread_flags, thread);
   } else {
-    // Check if timeout is specified
-    if (timeout != 0U) {
-      // Store waiting flags and options
-      EvrRtxThreadFlagsWaitPending(flags, options, timeout);
-      thread->wait_flags = flags;
-      thread->flags_options = (uint8_t)options;
-      // Suspend current Thread
+  // Check if timeout is specified
+  if (timeout != 0U) {
+    // Store waiting flags and options
+    EvrRtxThreadFlagsWaitPending(flags, options, timeout);
+    thread->wait_flags = flags;
+    thread->flags_options = (uint8_t)options;
+    // Suspend current Thread
       if (!osRtxThreadWaitEnter(osRtxThreadWaitingThreadFlags, timeout)) {
         EvrRtxThreadFlagsWaitTimeout(thread);
-      }
+  }
       thread_flags = (uint32_t)osErrorTimeout;
     } else {
-      EvrRtxThreadFlagsWaitNotCompleted(flags, options);
+  EvrRtxThreadFlagsWaitNotCompleted(flags, options);
       thread_flags = (uint32_t)osErrorResource;
     }
   }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013-2020 Arm Limited. All rights reserved.
+ * Copyright (c) 2013-2021 Arm Limited. All rights reserved.
  *
  * SPDX-License-Identifier: Apache-2.0
  *
@@ -37,10 +37,11 @@
      (!defined(__ARM_ARCH_8M_BASE__))   && \
      (!defined(__ARM_ARCH_8M_MAIN__))   && \
      (!defined(__ARM_ARCH_8_1M_MAIN__)))
-#error "Unknown Arm Architecture!"
+#error "Unknown ARM Architecture!"
 #endif
 
-#if   (defined(__ARM_ARCH_7A__) && (__ARM_ARCH_7A__ != 0))
+#if   ((defined(__ARM_ARCH_7A__) && (__ARM_ARCH_7A__ != 0)) ||
+       (defined(__ARM_ARCH_8A__) && (__ARM_ARCH_8A__ != 0)))
 #include "rtx_core_ca.h"
 #else
 #include "rtx_core_cm.h"

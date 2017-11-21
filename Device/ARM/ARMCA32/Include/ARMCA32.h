@@ -83,7 +83,7 @@ typedef enum IRQn
 #define __FPU_PRESENT        1U    /* FPU present                                   */
 #define __GIC_PRESENT        1U    /* GIC present                                   */
 #define __TIM_PRESENT        1U    /* TIM present                                   */
-#define __L2C_PRESENT        1U    /* L2C present                                   */
+#define __L2C_PRESENT        0U    /* L2C present                                   */
 
 #include "core_ca.h"
 #include <system_ARMCA32.h>
