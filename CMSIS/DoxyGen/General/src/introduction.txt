@@ -25,7 +25,7 @@ CMSIS is open-source and collaboratively developed on
 |<a href="../../Driver/html/index.html"><b>Driver</b></a>|  All Cortex | Generic peripheral driver interfaces for middleware. Connects microcontroller peripherals with middleware that implements for example communication stacks, file systems, or graphic user interfaces.|
 |<a href="../../DSP/html/index.html"><b>DSP</b></a>|        All Cortex-M | DSP library collection with over 60 functions for various data types: fixed-point (fractional q7, q15, q31) and single precision floating-point (32-bit). Implementations optimized for the SIMD instruction set are available for Cortex-M4/M7/M33/M35P.|
 |<a href="../../NN/html/index.html"><b>NN</b></a>|          All Cortex-M | Collection of efficient neural network kernels developed to maximize the performance and minimize the memory footprint on Cortex-M processor cores.|
-|<a href="../../RTOS/html/index.html"><b>RTOS v1</b></a>|   Cortex-M0/M0+/M3/M4/M7 | Common API for real-time operating systems along with a reference implementation based on RTX. It enables software components that can work across multiple RTOS systems.|
+|<a><b>RTOS v1 (dropped)</b></a>                        |   Cortex-M0/M0+/M3/M4/M7 | CMSIS-RTOS and RTX4 have been <b>dropped</b>! Use CMSIS release 5.7.0 or earlier if this component is still required. |
 |<a href="../../RTOS2/html/index.html"><b>RTOS v2</b></a>|  All Cortex-M, Cortex-A5/A7/A9 | Extends CMSIS-RTOS v1 with Armv8-M support, dynamic object creation, provisions for multi-core systems, binary compatible interface. |
 |<a href="../../Pack/html/index.html"><b>Pack</b></a>|      All Cortex-M, SecurCore, Cortex-A5/A7/A9 | Describes a delivery mechanism for software components, device parameters, and evaluation board support. It simplifies software re-use and product life-cycle management (PLM). |
 |<a href="../../Build/html/index.html"><b>Build</b></a>|      All Cortex-M, SecurCore, Cortex-A5/A7/A9 | A set of tools, software frameworks, and work flows that improve productivity, for example with Continuous Integration (CI). |
@@ -103,13 +103,12 @@ section \b "Validation" describes the scope of the various verification steps.
 
 CMSIS components are compatible with a range of C and C++ language standards. The CMSIS components comply with the
 <a href="https://developer.arm.com/documentation/ihi0036/d" target="_blank">Application Binary Interface (ABI) for the Arm
-Architecture</a> (exception CMSIS-RTOS v1). This ensures C API interfaces that support inter-operation between various
+Architecture</a>. This ensures C API interfaces that support inter-operation between various
 toolchains.
 
 As CMSIS defines API interfaces and functions that scale to a wide range of processors and devices, the scope of
 the run-time test coverage is limited. However, several components are validated using dedicated test suites
-(<a href="../../Driver/html/driverValidation.html">CMSIS-Driver</a>,
-<a href="../../RTOS/html/rtosValidation.html">CMSIS-RTOS v1</a>, and
+(<a href="../../Driver/html/driverValidation.html">CMSIS-Driver</a>, and
 <a href="../../RTOS2/html/rtosValidation.html">CMSIS-RTOS v2</a>).
 
 The CMSIS source code is checked for MISRA C:2012 conformance using PC-Lint. MISRA deviations are documented with
@@ -149,8 +148,7 @@ Directory                 |Content
 \b Include                |Include files for <a href="../../Core/html/index.html"><b>CMSIS-Core (Cortex-M)</b></a> and <a href="../../DSP/html/index.html"><b>CMSIS-DSP</b></a>
 \b NN                     |<a href="../../NN/html/index.html"><b>CMSIS-NN</b></a> software library source code
 \b Pack                   |<a href="../../Pack/html/index.html"><b>CMSIS-Pack</b></a>
-\b RTOS                   |<a href="../../RTOS/html/index.html"><b>CMSIS-RTOS Version 1</b></a> along with RTX4 reference implementation
-\b RTOS2                  |<a href="../../RTOS/html/index.html"><b>CMSIS-RTOS Version 2</b></a> along with RTX5 reference implementation
+\b RTOS2                  |<a href="../../RTOS2/html/index.html"><b>CMSIS-RTOS Version 2</b></a> along with RTX5 reference implementation
 \b SVD                    |<a href="../../SVD/html/index.html"><b>CMSIS-SVD</b></a>
 \b Utilities              |PACK.xsd (<a href="../../Pack/html/packFormat.html#PackSchema"><b>CMSIS-Pack</b> schema file</a>), PackChk.exe (checking tool for software packs), \n CMSIS-SVD.xsd (<a href="../../SVD/html/schema_1_2_gr.html"><b>CMSIS-SVD</b> schema file</a>), SVDConv.exe (conversion tool for SVD files), \n CPRJ.xsd (<a href="../../Build/html/projectDescriptionSchema.html"><b>CMSIS-Build</b> schema file</a>)
 */
@@ -168,7 +166,6 @@ In addition, each CMSIS component has its own release history:
 - <a href="../../Driver/html/driver_revisionHistory.html"><b>Driver Revision History</b></a>
 - <a href="../../DSP/html/ChangeLog_pg.html"><b>DSP Revision History (Change Log)</b></a>
 - <a href="../../NN/html/ChangeLog_pg.html"><b>NN Revision History (Change Log)</b></a>
-- <a href="../../RTOS/html/rtos_revisionHistory.html"><b>RTOS v1 Revision History</b></a>
 - <a href="../../RTOS2/html/rtos_revisionHistory.html"><b>RTOS v2 Revision History</b></a>
 - <a href="../../Pack/html/pack_revisionHistory.html"><b>Pack Revision History</b></a>
 - <a href="../../SVD/html/svd_revisionHistory.html"><b>SVD Revision History</b></a>

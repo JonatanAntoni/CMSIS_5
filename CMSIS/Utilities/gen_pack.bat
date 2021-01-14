@@ -75,10 +75,6 @@ XCOPY /Q /S /Y ..\..\CMSIS\NN\*.* %RELEASE_PATH%\CMSIS\NN\*.*
 XCOPY /Q /S /Y ..\..\CMSIS\Pack\Example\*.*   %RELEASE_PATH%\CMSIS\Pack\Example\*.*
 XCOPY /Q /S /Y ..\..\CMSIS\Pack\Tutorials\*.* %RELEASE_PATH%\CMSIS\Pack\Tutorials\*.*
 
-:: -- RTOS files 
-XCOPY /Q /S /Y ..\..\CMSIS\RTOS\Template\*.* %RELEASE_PATH%\CMSIS\RTOS\Template\*.*
-XCOPY /Q /S /Y ..\..\CMSIS\RTOS\RTX\*.* %RELEASE_PATH%\CMSIS\RTOS\RTX\*.*
-
 :: -- RTOS2 files 
 XCOPY /Q /S /Y ..\..\CMSIS\RTOS2\Include\*.* %RELEASE_PATH%\CMSIS\RTOS2\Include\*.*
 XCOPY /Q /S /Y ..\..\CMSIS\RTOS2\Source\*.* %RELEASE_PATH%\CMSIS\RTOS2\Source\*.*
@@ -109,7 +105,7 @@ ECHO.
 ECHO Delete previous generated HTML files
 
 PUSHD ..\Documentation
-FOR %%A IN (Build, Core, Core_A, DAP, Driver, DSP, General, Pack, RTOS, RTOS2, SVD, Zone) DO IF EXIST %%A (RMDIR /S /Q %%A)
+FOR %%A IN (Build, Core, Core_A, DAP, Driver, DSP, General, Pack, RTOS2, SVD, Zone) DO IF EXIST %%A (RMDIR /S /Q %%A)
 POPD
 
 :: -- Generate HTML Files
@@ -152,10 +148,6 @@ pushd Pack
 doxygen Pack.dxy
 popd
 
-pushd RTOS
-doxygen rtos.dxy
-popd
-
 pushd RTOS2
 doxygen rtos.dxy
 popd
@@ -190,7 +182,7 @@ XCOPY /Q /S /Y ..\Documentation\*.* %RELEASE_PATH%\CMSIS\Documentation\*.*
 
 :: -- Remove generated doxygen files
 PUSHD ..\Documentation
-FOR %%A IN (Build, Core, Core_A, DAP, Driver, DSP, General, NN, Pack, RTOS, RTOS2, SVD, Zone) DO IF EXIST %%A (RMDIR /S /Q %%A)
+FOR %%A IN (Build, Core, Core_A, DAP, Driver, DSP, General, NN, Pack, RTOS2, SVD, Zone) DO IF EXIST %%A (RMDIR /S /Q %%A)
 POPD
 
 :: Checking 
