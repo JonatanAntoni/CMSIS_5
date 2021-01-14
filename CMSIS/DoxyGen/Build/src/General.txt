@@ -70,7 +70,8 @@ Software layers and Virtual I/O simplify these use cases:
     - added special handling for layer markdown files (layer.\<layer name>.md) being concatenated into README.md on compose command of cbuildgen.
     - fixed: #970 Toolchain configuration files corrected to handle Cortex-M0+, Cortex-M35P, SC000, SC300 and ARMV81MML based devices.
     - fixed: #971 Unnecessary rebuild of libraries when using GCC toolchain.
-  </td>
+    </td>
+  </tr>
   <tr>
     <td>0.9.0 (beta)</td>
     <td>Release for beta review:

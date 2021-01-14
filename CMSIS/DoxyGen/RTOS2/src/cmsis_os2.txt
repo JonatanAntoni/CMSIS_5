@@ -1418,12 +1418,6 @@ The CMSIS-RTOS RTX v5 is delivered in source code and several examples are provi
       <td>Source</td>
       <td>Generic <b>OS tick</b> implementations for various processors based on \ref rtos_os_tick_api.</td>
     </tr>
-\ifnot FuSaRTS
-    <tr>
-      <td>Template</td>
-      <td><a class="el" href="../../RTOS/html/index.html">CMSIS-RTOS API v1</a> template source and header file.</td>
-    </tr>
-\endif	
     <tr>
       <td>RTX</td>
       <td>Directory with RTX specific files and folders. Also contains the component viewer description file.</td>
@@ -2037,12 +2031,7 @@ CMSIS-RTOS2 provides following API interfaces:
   - \subpage rtos_api2 is the C function interface that supports dynamic object creation \if ARMv8M and Armv8-M (Arm Cortex-M23,
     Cortex-M33 and Cortex-M35P) \endif.
 \ifnot FuSaRTS	
-  - <a class="el" href="../../RTOS/html/functionOverview.html">CMSIS-RTOS C API v1</a> is a C function API that is backward
-    compatible with CMSIS-RTOS v1.
   - \subpage rtos_apicpp is a C++ class function API (future extension).
-
-It is possible to intermix the different API variants in the same application and even in the same C/C++ source module.
-However, the functions of the <a class="el" href="../../RTOS/html/functionOverview.html">CMSIS-RTOS C API v1</a> may be deprecated in future versions of CMSIS-RTOS.
 \endif
 
 CMSIS-RTOS2 defines also a generic system timer interface that works across the supported Arm Cortex processors:
@@ -2271,19 +2260,6 @@ It provides a generic interface to a kernel system tick timer and defines the fo
 
 
 /* ======================================================================================================================== */
-// Group creation for Reference 
-/* 
-\addtogroup CMSIS_RTOS1 CMSIS-RTOS API v1
-\brief This section describes the CMSIS-RTOS API v1. 
-\details 
-The CMSIS-RTOS is a generic API layer that interfaces to an existing RTOS kernel.
-
-CMSIS-RTOS2 provides an translation layer for the
-<a class="el" href="../../RTOS/html/index.html">CMSIS-RTOS API v1</a> that simplifies migration.
-
-Refer to the <a class="el" href="../../RTOS/html/modules.html">Reference</a> guide of the CMSIS-RTOS API v1 for details.
-*/
-
 // Group creation for Reference 
 /** 
 \addtogroup CMSIS_RTOS CMSIS-RTOS API v2

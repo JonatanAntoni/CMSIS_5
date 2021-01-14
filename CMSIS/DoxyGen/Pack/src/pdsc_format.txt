@@ -1147,7 +1147,7 @@ The table lists predefined Component Classes.
   </tr>
   <tr>
     <td class="XML-Token">CMSIS</td>
-    <td>Components defined by Cortex Microcontroller Software Interface Standard (e.g. <a class=el href="../../Core/html/index.html">CMSIS-Core(M)</a>, <a class=el href="../../Core_A/html/index.html">CMSIS-Core(A)</a>, <a class=el href="../../DSP/html/index.html">CMSIS-DSP</a> and <a class=el href="../../RTOS/html/index.html">CMSIS-RTOS</a>)</td>
+    <td>Components defined by Cortex Microcontroller Software Interface Standard (e.g. <a class=el href="../../Core/html/index.html">CMSIS-Core(M)</a>, <a class=el href="../../Core_A/html/index.html">CMSIS-Core(A)</a>, <a class=el href="../../DSP/html/index.html">CMSIS-DSP</a> and <a class=el href="../../RTOS2/html/index.html">CMSIS-RTOS2</a>)</td>
   </tr>
   <tr>
     <td class="XML-Token">CMSIS Driver</td>
@@ -1247,7 +1247,7 @@ The following table lists predefined values for the Component Class <b>Cclass="C
   </tr>
   <tr>
     <td class="XML-Token">RTOS</td>
-    <td>A component implementing the <a class=el href="../../RTOS/html/index.html">CMSIS-RTOS</a> API specification.</td>
+    <td>A component implementing the deprecated CMSIS-RTOS API specification.</td>
   </tr>
   <tr>
     <td class="XML-Token">RTOS2</td>

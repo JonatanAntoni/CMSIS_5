@@ -39,10 +39,6 @@ As a consequence of these requirements the CMSIS-RTOS2 has the following fundame
  - The C function \c main is no longer started as a thread (this was an optional feature in CMSIS-RTOS v1).
  - Functions that return osEvent have been replaced.
 
-CMSIS-RTOS2 provides an translation layer to <a class="el" href="../../RTOS/html/index.html">CMSIS-RTOS v1</a>. It
-is possible to intermix \ref rtos_api2 and <a class="el" href="../../RTOS/html/functionOverview.html">CMSIS-RTOS C API v1</a>
-within the same application. Over time, you may migrate to the new API as explained in \ref os2Migration.
-
 CMSIS-RTOS2 is not POSIX compliant, but has provisions to enable a C++11/C++14 interface.
 
 The following sections provide further details about CMSIS-RTOS2 and the RTX reference implementation.
@@ -72,7 +68,6 @@ Directory                    | Content
 \b CMSIS/RTOS2/Include       | \ref cmsis_os2_h                                                 
 \b CMSIS/RTOS2/RTX           | CMSIS-RTOS2 reference implementation based on RTX version 5
 \b CMSIS/RTOS2/Source        | Generic <b>OS tick</b> implementations for various processors based on \ref rtos_os_tick_api
-\b CMSIS/RTOS2/Template      | Compatibility layer to <a class="el" href="../../RTOS/html/index.html">CMSIS-RTOS v1</a>
 */
 
 

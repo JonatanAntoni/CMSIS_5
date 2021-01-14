@@ -878,6 +878,9 @@ and 8-bit Java bytecodes in Jazelle state.
     <!-- CMSIS-RTOS API -->
     <api Cclass="CMSIS" Cgroup="RTOS" Capiversion="1.0.0" exclusive="1">
       <description>DEPRECATED: CMSIS-RTOS API for Cortex-M, SC000, and SC300</description>
+      <files>
+        <file category="doc" name=""/>
+      </files>
     </api>
     <api Cclass="CMSIS" Cgroup="RTOS2" Capiversion="2.1.3" exclusive="1">
       <description>CMSIS-RTOS API for Cortex-M, SC000, and SC300</description>
