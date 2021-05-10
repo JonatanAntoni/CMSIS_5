@@ -126,3 +126,7 @@ targets:
   armca9neon:
     mcpu    : cortex-a9
     float   : hard
+  armca32:
+    mcpu    : cortex-a32
+    float   : hard
+  

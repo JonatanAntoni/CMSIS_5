@@ -41,6 +41,7 @@ class DeviceAxis(Enum):
     CA5NEON = ('Cortex-A5neon', 'CA5neon')
     CA7NEON = ('Cortex-A7neon', 'CA7neon')
     CA9NEON = ('Cortex-A9neon', 'CA9neon')
+    CA32 = ('Cortex-A32', 'CA32')
     
     def has_bootloader(self):
         return self in [
@@ -104,6 +105,7 @@ FVP_MODELS = {
     DeviceAxis.CA5NEON: ("FVP_VE_Cortex-A5x1", ""),
     DeviceAxis.CA7NEON: ("FVP_VE_Cortex-A7x1", ""),
     DeviceAxis.CA9NEON: ("FVP_VE_Cortex-A9x1", ""),
+    DeviceAxis.CA32: ("FVP_Base_Cortex-A32x1", ""),
 }
 
 

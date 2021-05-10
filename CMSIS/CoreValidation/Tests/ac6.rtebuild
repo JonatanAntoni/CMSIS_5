@@ -128,3 +128,7 @@ targets:
     mcpu    : cortex-a9
     fpu     : neon-fp16
     float   : hard
+  armca32:
+    mcpu    : cortex-a32
+    fpu     : neon-fp-armv8
+    float   : hard

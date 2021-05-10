@@ -41,6 +41,8 @@
 #define CMSIS_device_header "ARMCA7.h"
 #elif defined(ARMCA9)
 #define CMSIS_device_header "ARMCA9.h"
+#elif defined(ARMCA32)
+#define CMSIS_device_header "ARMCA32.h"
 #else
 #error "Unknown device selection!"
 #endif

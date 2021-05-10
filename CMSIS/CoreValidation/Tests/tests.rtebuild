@@ -139,6 +139,10 @@ targets:
     extends: armca
     device : ARMCA9
     dsuffix: ""
+  armca32:
+    extends: armca
+    device : ARMCA32
+    dsuffix: ""
 include: 
   - ./
   - ../Include/

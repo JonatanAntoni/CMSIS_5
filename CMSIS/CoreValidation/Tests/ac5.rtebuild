@@ -67,3 +67,7 @@ targets:
     cpu    : Cortex-A9
     fpu    : neon-fp16
     float  : hardfp
+  armca32:
+    cpu    : Cortex-A32
+    fpu    : neon-fp-armv8
+    float  : hardfp
